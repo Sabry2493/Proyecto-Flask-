@@ -4,16 +4,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-
-    return render_template('home-banking.html', saludo = persona1.saludo() )
-
-@app.route('/saludo')
-def home():#aca pongo que es lo que quiero que me devuelva cuando yo entro al home de mi pagina
-
-    return render_template('index.html', saludo = persona1.saludo() ) # le digo que me renderize tal html con la informacion de la variable saludo
-
-if __name__ == '__main__':
-    from persona import Persona 
-    persona1 = Persona(32456756,'sabrina') #aca creamos un objeto persona
-
-    app.run(debug=True)    #aca es donde arranca el programa
+    
+    persona_titular = lista_de_datos['dni']
+    return render_template('home-banking.html',
+                           saludo=persona_titular.saludo(),
+                           movements=persona_titular.obtener_todos_los_movimientos())
+@app.route('/proceso')
+def procesar():
+    return render_template('proceso.html')
+if __name__ == '__main__': 
+    import proceso_cuentas
+    lista_de_datos = proceso_cuentas.crear_cuentas()
+    app.run(debug=True)

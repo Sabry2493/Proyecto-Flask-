@@ -1,6 +1,6 @@
 import datetime
 
-from cuenta import Cuenta
+from cuenta import Cuenta # desde el archivo cuenta importarme la clase Cuenta
 
 def convertir_fecha(string_fecha):
     #  que pasa si la fecha no tiene los 10 caracteres esperados?
